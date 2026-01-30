@@ -26,6 +26,33 @@ window.addEventListener('scroll', function() {
   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 }, false);
 
+// Burger menu functionality
+const burgerMenu = document.getElementById('burger-menu');
+const navMenu = document.getElementById('nav-menu');
+
+if (burgerMenu && navMenu) {
+  burgerMenu.addEventListener('click', function() {
+    burgerMenu.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+
+  // Close menu when clicking on a link
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function() {
+      burgerMenu.classList.remove('active');
+      navMenu.classList.remove('active');
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!burgerMenu.contains(event.target) && !navMenu.contains(event.target)) {
+      burgerMenu.classList.remove('active');
+      navMenu.classList.remove('active');
+    }
+  });
+}
+
 // Merchandise data
 const merchandiseItems = [
   { 
